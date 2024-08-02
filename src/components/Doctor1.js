@@ -1,6 +1,7 @@
 import { useState,useRef,useEffect } from "react";
 import {Box, Button, Flex,Input  } from "@mantine/core";
 import { DatePicker,TimeInput } from '@mantine/dates';
+import TimeSlot from "./TimeSlot.js";
 function Doctor1(){
     const [data,setData]=useState([]);
     const datePickerRef = useRef('');
@@ -92,9 +93,10 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
  
 return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
 <Box  >
+  <h1>Doctor 1</h1>
     <h1>Choose Date</h1>
 <DatePicker ref={datePickerRef}  w={400} value={date} onChange={setDate}  />
- 
+<TimeSlot/>
 </Box>
 <Box>
     <h1>Choose Time</h1>
