@@ -1,0 +1,20 @@
+{
+    "doctor1": {
+      "timeslotsTaken": [
+        {"time": "8/2/2024, 13:00-14:00", "firstName": "Sougata", "lastName": "Ghar", "email": "sg@gmail.com", "phone": "3342"},
+        {"time": "8/2/2024, 14:00-15:00", "firstName": "Jane", "lastName": "Doe", "email": "g@gmail.com", "phone": "33423"},
+        {"time": "8/2/2024, 15:00-16:00", "firstName": "John", "lastName": "Doe", "email": "sg2@gmail.com", "phone": "3341"},
+        {"time": "8/5/2024, 14:00-15:00", "firstName": "Jack", "lastName": "Doe", "email": "jack2@gmail.com", "phone": "33741"},
+        {"time": "8/5/2024, 13:00-14:00", "firstName": "Tom", "lastName": "Doe", "email": "tom@gmail.com", "phone": "337341"},
+        {"time": "8/6/2024, 13:00-14:00", "firstName": "Jack", "lastName": "Ross", "email": "jackross@gmail.com", "phone": "3241"},
+        {"time": "8/6/2024, 14:00-15:00", "firstName": "Tom", "lastName": "Ross", "email": "tomross@gmail.com", "phone": "33641"},
+        {"time": "8/6/2024, 14:00-15:00", "firstName": "John", "lastName": "Doe", "email": "jack2@gmail.com", "phone": "741"}
+      ]
+    },
+    "doctor2": {
+      "timeslotsTaken": [ 
+      {"time": "8/5/2024, 14:00-15:00", "firstName": "Jack", "lastName": "Doe", "email": "jack2@gmail.com", "phone": "33741"},
+      {"time": "8/5/2024, 13:00-14:00", "firstName": "Tom", "lastName": "Doe", "email": "tom@gmail.com", "phone": "337341"}]
+    }
+  }
+  

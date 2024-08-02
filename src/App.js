@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import { Container, Flex,Box } from '@mantine/core';
+import Doctors from './components/Doctors';
+import Doctor1 from './components/Doctor1';
+import Doctor2 from './components/Doctor2';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+ 
+  return (<Router>
+ <Container h={'100vh'}>
+
+<Routes>
+          <Route path="/" element={<Doctors />} />
+          <Route path="/doctor1" element={<Doctor1 />} />
+          <Route path="/doctor2" element={<Doctor2 />} />
+
+           
+        </Routes>
+ 
+ </Container>
+ </Router>
   );
 }
 
