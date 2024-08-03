@@ -43,6 +43,10 @@ function Doctor1(){
       email: email,
       phone: phone
     };
+    if (!dataObject.time || !dataObject.firstName || !dataObject.lastName || !dataObject.email || !dataObject.phone) {
+      alert("Please fill all fields");
+      return false; // Prevent form submission
+    }
 const foundMatch= data.filter(a => a.time === dataObject.time)
 
       if(foundMatch.length>0){
@@ -74,7 +78,7 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
         let uniqueDates = [...new Set(dates)];
         setFixedSlots(slotsClosed(uniqueDates, dates));
       }
-    }, [data]);  
+    }, [data,date]);  
   
      
     useEffect(() => {
@@ -95,23 +99,23 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
 return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
 <Box  >
   <h1>Doctor 1</h1>
-    <h1>Choose Date</h1>
-<DatePicker ref={datePickerRef}  w={400} value={date} onChange={setDate}  />
-<TimeSlot/>
+    <h1>Choose Date First</h1>
+<DatePicker aria-required ref={datePickerRef}  w={400} value={date} onChange={setDate}   />
+<TimeSlot selectedDate={date} data={data}/>
 </Box>
 <Box>
     <h1>Choose Time</h1>
 <Flex gap={16}>
 
 <TimeInput
-
+      required
       description="Start Time"
       placeholder="Input placeholder"
       value={startTime}
       onChange={e => setStartTime(e.target.value)}
     />
     <TimeInput
-       
+      required
       description="End Time"
       placeholder="Input placeholder"
       value={endTime}
@@ -123,12 +127,12 @@ return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
 </Flex>
 <h1>Details</h1>
 <Flex gap={16} wrap={'wrap'}>
-    <Input flex={1} placeholder="First Name" w={200} value={fname} onChange={e=> setFname(e.target.value)}/>
+    <Input required flex={1} placeholder="First Name" w={200} value={fname} onChange={e=> setFname(e.target.value)}/>
     <Input flex={1}  w={200} placeholder="Last Name" value={lname} onChange={e=> setLname(e.target.value)}/>
     
 </Flex>
 <Flex mt={16} gap={16} wrap={'wrap'}>
-    <Input flex={1} placeholder="Email"  value={email} onChange={e => setEmail(e.target.value)}/>
+    <Input required flex={1} placeholder="Email"  value={email} onChange={e => setEmail(e.target.value)}/>
     <Input flex={1} placeholder="Phone" w={200} value={phone} onChange={e => setPhone(e.target.value)}/>
     
 </Flex>
