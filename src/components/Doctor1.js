@@ -2,6 +2,7 @@ import { useState,useRef,useEffect } from "react";
 import {Box, Button, Flex,Input  } from "@mantine/core";
 import { DatePicker,TimeInput } from '@mantine/dates';
 import TimeSlot from "./TimeSlot.js";
+import { Link } from "react-router-dom";
 function Doctor1(){
     const [data,setData]=useState([]);
     const datePickerRef = useRef('');
@@ -132,9 +133,9 @@ return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
     
 </Flex>
 <Button onClick={SubmitDetails} mt={16}>Submit</Button>
- 
+
 </Box>
- 
+<Link to='/'>Home</Link>
 </Flex>
 
 }

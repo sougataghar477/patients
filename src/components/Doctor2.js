@@ -2,6 +2,7 @@ import { useState,useRef,useEffect } from "react";
 import {Box, Button, Flex,Input  } from "@mantine/core";
 import { DatePicker,TimeInput } from '@mantine/dates';
 import TimeSlot from "./TimeSlot.js";
+import { Link } from "react-router-dom";
 
 function Doctor2(){
     const [data,setData]=useState([]);
@@ -84,8 +85,8 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
         fixedSlots.forEach(slot=>{
            buttons.forEach((button =>{
             if(button.textContent===slot){
-              button.style.backgroundColor="grey"
               button.disabled="true";
+              button.style.backgroundColor="grey"
             }
            }))
         })  
@@ -134,7 +135,7 @@ return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
     
 </Flex>
 <Button onClick={SubmitDetails} mt={16}>Submit</Button>
- 
+<Box> <Link to='/'>Back to Home</Link></Box>
 </Box>
  
 </Flex>
