@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Doctor1(){
     const [data,setData]=useState([]);
     const datePickerRef = useRef('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(new Date());
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [fname,setFname]=useState('');
@@ -101,10 +101,10 @@ return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
   <h1>Doctor 1</h1>
     <h1>Choose Date First</h1>
 <DatePicker aria-required ref={datePickerRef}  w={400} value={date} onChange={setDate}   />
-<TimeSlot selectedDate={date} data={data}/>
+<TimeSlot selectedDate={date} data={data} setStartTime={setStartTime} setEndTime={setEndTime} />
 </Box>
 <Box>
-    <h1>Choose Time</h1>
+    <h1>Choose Time(in 24 hours format)</h1>
 <Flex gap={16}>
 
 <TimeInput
@@ -120,7 +120,6 @@ return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
       placeholder="Input placeholder"
       value={endTime}
     onChange={(e)=>{
-        console.log(e.target.value)
         setEndTime(e.target.value)
     }}
     />

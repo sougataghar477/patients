@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Doctor2(){
     const [data,setData]=useState([]);
     const datePickerRef = useRef('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(new Date());
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [fname,setFname]=useState('');
@@ -96,10 +96,10 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
 return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
 <Box  >
   <h1>Doctor 2</h1>
+  <h1>Choose Time(in 24 hours format)</h1>
 
-    <h1>Choose Date</h1>
 <DatePicker ref={datePickerRef}  w={400} value={date} onChange={setDate}  />
-<TimeSlot/>
+<TimeSlot selectedDate={date} data={data}/>
 </Box>
 <Box>
     <h1>Choose Time</h1>
@@ -118,7 +118,7 @@ return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
       placeholder="Input placeholder"
       value={endTime}
     onChange={(e)=>{
-        console.log(e.target.value)
+         
         setEndTime(e.target.value)
     }}
     />
