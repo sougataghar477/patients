@@ -26,7 +26,7 @@ function TimeSlot({ data, selectedDate,setStartTime,setEndTime }) {
     return (
       <>
         <h2>Time Slots</h2>
-        <p>Click on a slot below to autofill </p>
+        <p>Click on a slot below to autofill time picker </p>
         {timeSlots.map(slot => (
           <p style={{cursor:'pointer'}} key={slot} onClick={()=> preFill(slot)}>
            <i>{slot} {filteredSlots.includes(slot) ? 'taken' : 'not taken'}</i>

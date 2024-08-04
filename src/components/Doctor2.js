@@ -14,9 +14,11 @@ function Doctor2(){
     const [email,setEmail]=useState("");
     const [phone,setPhone]=useState('');
     const [fixedSlots,setFixedSlots]=useState([])
-    
-   
- 
+    const minLength=4;
+    const maxLength=10;
+    const pattern = /^[A-Za-z]+$/;
+    const emailPattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const renderCount=useRef(0);
     function slotsClosed(uniqueArray, duplicatesArray) {
       let count = 0;
       let filled = [];
@@ -96,11 +98,11 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
       }
     }, [datePickerRef,fixedSlots]);
  
-return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
+return <Flex my={32} justify={{ base: 'center', sm: 'space-between', lg: 'space-between' }} gap={16}  wrap={'wrap'}>
 <Box  >
   <h1>Doctor 2</h1>
     <h1>Choose Date First</h1>
-<DatePicker aria-required ref={datePickerRef}  w={400} value={date} onChange={setDate}   />
+<DatePicker  aria-required ref={datePickerRef}  mww={400} value={date} onChange={setDate}   />
 <TimeSlot selectedDate={date} data={data} setStartTime={setStartTime} setEndTime={setEndTime} />
 </Box>
 <Box>
@@ -126,19 +128,20 @@ return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
 </Flex>
 <h1>Details</h1>
 <Flex gap={16} wrap={'wrap'}>
-    <Input required flex={1} placeholder="First Name" w={200} value={fname} onChange={e=> setFname(e.target.value)}/>
-    <Input flex={1}  w={200} placeholder="Last Name" value={lname} onChange={e=> setLname(e.target.value)}/>
+<Input error={renderCount.current>0?(fname.length<minLength || fname.length> maxLength || !pattern.test(fname)):null}  required flex={1} placeholder="First Name" w={200} value={fname} onChange={e=> {setFname(e.target.value);renderCount.current++}}/>
+    <Input error={renderCount.current>0?(lname.length<minLength || lname.length>maxLength || !pattern.test(lname)):null }   required flex={1}  w={200} placeholder="Last Name" value={lname} onChange={e=> {setLname(e.target.value);renderCount.current++}}/>
     
 </Flex>
 <Flex mt={16} gap={16} wrap={'wrap'}>
-    <Input required flex={1} placeholder="Email"  value={email} onChange={e => setEmail(e.target.value)}/>
-    <Input flex={1} placeholder="Phone" w={200} value={phone} onChange={e => setPhone(e.target.value)}/>
-    
+    <Input error={renderCount.current>0? !emailPattern.test(email):null}  type="email" required flex={1} placeholder="Email"  value={email} onChange={e => {setEmail(e.target.value);renderCount.current++}}/>
+    <Input error={renderCount.current>0? !(/^\+?[1-9]\d{1,14}$/).test(phone):null} type="phone"  flex={1} placeholder="Phone" w={200} value={phone} onChange={e => {setPhone(e.target.value);renderCount.current++}}/>
+   
 </Flex>
 <Button onClick={SubmitDetails} mt={16}>Submit</Button>
+<p><Link to='/'>Go back to Home</Link></p>
 
 </Box>
-<Link to='/'>Home</Link>
+ 
 </Flex>
 
 }
