@@ -3,7 +3,6 @@ import {Box, Button, Flex,Input  } from "@mantine/core";
 import { DatePicker,TimeInput } from '@mantine/dates';
 import TimeSlot from "./TimeSlot.js";
 import { Link } from "react-router-dom";
-
 function Doctor2(){
     const [data,setData]=useState([]);
     const datePickerRef = useRef('');
@@ -44,6 +43,10 @@ function Doctor2(){
       email: email,
       phone: phone
     };
+    if (!dataObject.time || !dataObject.firstName || !dataObject.lastName || !dataObject.email || !dataObject.phone) {
+      alert("Please fill all fields");
+      return false; // Prevent form submission
+    }
 const foundMatch= data.filter(a => a.time === dataObject.time)
 
       if(foundMatch.length>0){
@@ -75,7 +78,7 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
         let uniqueDates = [...new Set(dates)];
         setFixedSlots(slotsClosed(uniqueDates, dates));
       }
-    }, [data]);  
+    }, [data,date]);  
   
      
     useEffect(() => {
@@ -85,8 +88,8 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
         fixedSlots.forEach(slot=>{
            buttons.forEach((button =>{
             if(button.textContent===slot){
-              button.disabled="true";
               button.style.backgroundColor="grey"
+              button.disabled="true";
             }
            }))
         })  
@@ -96,48 +99,46 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
 return <Flex my={32} justify={'center'} gap={16}  wrap={'wrap'}>
 <Box  >
   <h1>Doctor 2</h1>
-  <h1>Choose Time(in 24 hours format)</h1>
-
-<DatePicker ref={datePickerRef}  w={400} value={date} onChange={setDate}  />
-<TimeSlot selectedDate={date} data={data}/>
+    <h1>Choose Date First</h1>
+<DatePicker aria-required ref={datePickerRef}  w={400} value={date} onChange={setDate}   />
+<TimeSlot selectedDate={date} data={data} setStartTime={setStartTime} setEndTime={setEndTime} />
 </Box>
 <Box>
-    <h1>Choose Time</h1>
+    <h1>Choose Time(in 24 hours format)</h1>
 <Flex gap={16}>
 
 <TimeInput
-
+      required
       description="Start Time"
       placeholder="Input placeholder"
       value={startTime}
       onChange={e => setStartTime(e.target.value)}
     />
     <TimeInput
-       
+      required
       description="End Time"
       placeholder="Input placeholder"
       value={endTime}
     onChange={(e)=>{
-         
         setEndTime(e.target.value)
     }}
     />
 </Flex>
 <h1>Details</h1>
 <Flex gap={16} wrap={'wrap'}>
-    <Input flex={1} placeholder="First Name" w={200} value={fname} onChange={e=> setFname(e.target.value)}/>
+    <Input required flex={1} placeholder="First Name" w={200} value={fname} onChange={e=> setFname(e.target.value)}/>
     <Input flex={1}  w={200} placeholder="Last Name" value={lname} onChange={e=> setLname(e.target.value)}/>
     
 </Flex>
 <Flex mt={16} gap={16} wrap={'wrap'}>
-    <Input flex={1} placeholder="Email"  value={email} onChange={e => setEmail(e.target.value)}/>
+    <Input required flex={1} placeholder="Email"  value={email} onChange={e => setEmail(e.target.value)}/>
     <Input flex={1} placeholder="Phone" w={200} value={phone} onChange={e => setPhone(e.target.value)}/>
     
 </Flex>
 <Button onClick={SubmitDetails} mt={16}>Submit</Button>
-<Box> <Link to='/'>Back to Home</Link></Box>
+
 </Box>
- 
+<Link to='/'>Home</Link>
 </Flex>
 
 }
