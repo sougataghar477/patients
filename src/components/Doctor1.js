@@ -46,7 +46,7 @@ function Doctor1(){
       email: email,
       phone: phone
     };
-    if (!dataObject.time || !dataObject.firstName || !dataObject.lastName || !dataObject.email || !dataObject.phone) {
+    if (!dataObject.time || !dataObject.firstName || !dataObject.lastName || !dataObject.email || !dataObject.phone || !startTime || !endTime) {
       alert("Please fill all fields");
       return false; // Prevent form submission
     }
@@ -104,10 +104,10 @@ return <Flex my={32} justify={{ base: 'center', sm: 'space-between', lg: 'space-
   <h1>Doctor 1</h1>
     <h1>Choose Date First</h1>
 <DatePicker maw={400}    aria-required ref={datePickerRef}    value={date} onChange={setDate}   />
-<TimeSlot selectedDate={date} data={data} setStartTime={setStartTime} setEndTime={setEndTime} />
 </Box>
 <Box>
     <h1>Choose Time(in 24 hours format)</h1>
+<TimeSlot selectedDate={date} data={data} setStartTime={setStartTime} setEndTime={setEndTime} />
 <Flex gap={16}>
 
 <TimeInput
