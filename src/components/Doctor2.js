@@ -4,6 +4,7 @@ import { DatePicker,TimeInput } from '@mantine/dates';
 import TimeSlot from "./TimeSlot.js";
 import { Link } from "react-router-dom";
 function Doctor2(){
+
     const [data,setData]=useState([]);
     const datePickerRef = useRef('');
     const [date, setDate] = useState(new Date());
@@ -21,7 +22,7 @@ function Doctor2(){
     const renderCount=useRef(0);
     let dates = useRef([]);
     let uniqueDates = useRef([])
-
+console.log(date.toLocaleDateString())
     function slotsClosed(uniqueArray, duplicatesArray) {
       let count = 0;
       let filled = [];
@@ -79,9 +80,10 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
     useEffect(() => {
       if (data.length > 0) {
         console.log(data)
-        let dates = data.map(index => index.time.split(" ")[0].split("/")[1]);
-        let uniqueDates = [...new Set(dates)];
-        setFixedSlots(slotsClosed(uniqueDates, dates));
+         dates.current = data.map(index => index.time.split(" ")[0].replace(",",""));
+        uniqueDates.current = [...new Set(dates.current)];
+      
+        setFixedSlots(slotsClosed(uniqueDates.current, dates.current));
       }
     }, [data,date]);  
   
@@ -89,10 +91,23 @@ const foundMatch= data.filter(a => a.time === dataObject.time)
     useEffect(() => {
       if (datePickerRef.current) {
         let buttons = Array.from(datePickerRef.current.children[0].querySelectorAll('button'));
-       
+        let b=buttons[1].textContent.split(" ")[0];
+        let c=buttons[1].textContent.split(" ")[1];
+        const monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        let month=monthNames.indexOf(b)+1;
+        console.log(month)
+        
         fixedSlots.forEach(slot=>{
+          
+          
+          let a=slot.split("/")[1];
+           let newDate=`${month}/${a}/${c}`
+          
            buttons.forEach((button =>{
-            if(button.textContent===slot){
+            if(button.textContent===a && slot ===newDate){
               button.style.backgroundColor="grey"
               button.disabled="true";
             }
