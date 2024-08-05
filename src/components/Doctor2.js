@@ -19,6 +19,9 @@ function Doctor2(){
     const pattern = /^[A-Za-z]+$/;
     const emailPattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const renderCount=useRef(0);
+    let dates = useRef([]);
+    let uniqueDates = useRef([])
+
     function slotsClosed(uniqueArray, duplicatesArray) {
       let count = 0;
       let filled = [];
@@ -102,7 +105,12 @@ return <Flex my={32} justify={{ base: 'center', sm: 'space-between', lg: 'space-
 <Box  >
   <h1>Doctor 2</h1>
     <h1>Choose Date First</h1>
-<DatePicker  aria-required ref={datePickerRef}  mww={400} value={date} onChange={setDate}   />
+    <DatePicker maw={400}
+        onNextMonth={() => { setFixedSlots(slotsClosed(uniqueDates.current, dates.current)); }}
+        onPreviousMonth={() => { setFixedSlots(slotsClosed(uniqueDates.current, dates.current)); }}
+        aria-required ref={datePickerRef}
+        value={date}
+        onChange={setDate} />
 <p>Greyed out date(s) mean they are filled </p>
 
 </Box>
