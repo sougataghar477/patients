@@ -19,7 +19,7 @@ function Doctor1(){
     const pattern = /^[A-Za-z]+$/;
     const emailPattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let renderCount =useRef(0);
- 
+//getting date slots which are closed
     function slotsClosed(uniqueArray, duplicatesArray) {
       let count = 0;
       let filled = [];
@@ -37,7 +37,7 @@ function Doctor1(){
        
        return filled
     }
-
+//submitting
   function SubmitDetails(){
     const dataObject = {
       time: `${date?.toLocaleDateString()}, ${startTime}-${endTime}`,
@@ -104,6 +104,7 @@ return <Flex my={32} justify={{ base: 'center', sm: 'space-between', lg: 'space-
   <h1>Doctor 1</h1>
     <h1>Choose Date First</h1>
 <DatePicker maw={400}    aria-required ref={datePickerRef}    value={date} onChange={setDate}   />
+<p>Greyed out date(s) mean they are filled </p>
 </Box>
 <Box>
     <h1>Choose Time(in 24 hours format)</h1>
