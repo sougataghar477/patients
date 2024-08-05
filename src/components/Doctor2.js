@@ -103,6 +103,8 @@ return <Flex my={32} justify={{ base: 'center', sm: 'space-between', lg: 'space-
   <h1>Doctor 2</h1>
     <h1>Choose Date First</h1>
 <DatePicker  aria-required ref={datePickerRef}  mww={400} value={date} onChange={setDate}   />
+<p>Greyed out date(s) mean they are filled </p>
+
 </Box>
 <Box>
     <h1>Choose Time(in 24 hours format)</h1>
